@@ -1,5 +1,5 @@
 // apps/web/src/contexts/AuthContext.tsx
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useUser, useClerk, useSignIn } from '@clerk/clerk-react';
 import { MOCK_CUSTOMER, MOCK_STAFF } from '../data/mockData';
 
@@ -66,6 +66,28 @@ const ClerkAuthProviderInner: React.FC<{ children: ReactNode }> = ({ children })
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
   const [customerAuthTab, setCustomerAuthTab] = useState<'signin' | 'signup' | 'forgot'>('signin');
   const [isSecretAdminModalOpen, setIsSecretAdminModalOpen] = useState(false);
+
+  // Auto-sync Clerk user to Supabase database
+  useEffect(() => {
+    if (isSignedIn && clerkUser) {
+      const email = clerkUser.primaryEmailAddress?.emailAddress;
+      if (!email) return;
+
+      fetch('/api/auth/sync-user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          clerk_id: clerkUser.id,
+          email,
+          first_name: clerkUser.firstName || '',
+          last_name: clerkUser.lastName || '',
+          avatar_url: clerkUser.imageUrl,
+          membership_tier: (clerkUser.publicMetadata?.membership_tier as string) || 'platinum',
+          customer_id: (clerkUser.publicMetadata?.customer_id as string) || `BW-VIP-${clerkUser.id.slice(-4).toUpperCase()}`,
+        }),
+      }).catch((err) => console.error('Failed to sync Clerk user to Supabase:', err));
+    }
+  }, [isSignedIn, clerkUser]);
 
   // Derive active customer from Clerk user when signed in via Clerk
   const activeCustomer: User | null = (isSignedIn && clerkUser)

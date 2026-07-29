@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import { z } from 'zod';
 import { verifyAdminToken } from '../middleware/adminAuth';
 import { generateId, nowIso, readCollection, writeCollection } from '../services/jsonDb';
+import { saveNewsletterSubscriberToSupabase } from '../services/supabaseService';
 
 export const router = Router();
 
@@ -10,7 +11,7 @@ const subscriptionSchema = z.object({
   source: z.string().optional(),
 });
 
-router.post('/', (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
   const parseResult = subscriptionSchema.safeParse(req.body);
   if (!parseResult.success) {
     return res.status(400).json({ error: 'Valid email address is required.' });
@@ -32,6 +33,10 @@ router.post('/', (req: Request, res: Response) => {
 
   subscriptions.unshift(subscription);
   writeCollection('newsletter', subscriptions);
+
+  // Sync to Supabase Postgres database
+  await saveNewsletterSubscriberToSupabase(email);
+
   res.status(201).json({ success: true, subscription });
 });
 

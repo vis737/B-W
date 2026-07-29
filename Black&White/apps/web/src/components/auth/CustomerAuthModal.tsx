@@ -49,12 +49,15 @@ export const CustomerAuthModal: React.FC = () => {
     setIsLoading(true);
     setErrorMsg('');
 
-    setTimeout(async () => {
+    try {
       await loginCustomer(signInEmail, signInPass, rememberMe);
       setIsLoading(false);
       showToast('Welcome back to Black & White Private Reserve.', 'success', 'Sign In Successful');
       navigate('/dashboard');
-    }, 500);
+    } catch (err: any) {
+      setIsLoading(false);
+      setErrorMsg(err?.message || 'Failed to sign in. Please try again.');
+    }
   };
 
   const handleSignUpSubmit = async (e: React.FormEvent) => {
@@ -77,12 +80,15 @@ export const CustomerAuthModal: React.FC = () => {
     }
 
     setIsLoading(true);
-    setTimeout(async () => {
+    try {
       await signupCustomer({ firstName, lastName, email: signUpEmail, phone, pass: signUpPass });
       setIsLoading(false);
       showToast('Account created successfully. Welcome to B&W Society.', 'success', 'Registration Complete');
       navigate('/dashboard');
-    }, 600);
+    } catch (err: any) {
+      setIsLoading(false);
+      setErrorMsg(err?.message || 'Failed to register account.');
+    }
   };
 
   const handleSocialLogin = async (provider: string) => {
@@ -98,11 +104,9 @@ export const CustomerAuthModal: React.FC = () => {
     }
 
     showToast(`Authenticating securely with ${provider}...`, 'info', 'Social Connect');
-    setTimeout(() => {
-      loginCustomer(`patron.${provider.toLowerCase()}@luxury.com`, 'social123', true);
-      showToast(`Logged in via ${provider}.`, 'success', 'Authenticated');
-      navigate('/dashboard');
-    }, 600);
+    await loginCustomer(`patron.${provider.toLowerCase()}@luxury.com`, 'social123', true);
+    showToast(`Logged in via ${provider}.`, 'success', 'Authenticated');
+    navigate('/dashboard');
   };
 
   return (

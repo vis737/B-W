@@ -1,15 +1,18 @@
 -- Initial Schema for Supabase with Enterprise RLS Hardening
 
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
 CREATE TABLE IF NOT EXISTS categories (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     parent_id UUID REFERENCES categories(id),
     name TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE,
+    slug TEXT NOT NULL,
     description TEXT,
     image_url TEXT,
     is_active BOOLEAN DEFAULT true,
     sort_order INT DEFAULT 0,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    CONSTRAINT categories_slug_key UNIQUE (slug)
 );
 
 CREATE TABLE IF NOT EXISTS age_groups (
@@ -24,8 +27,8 @@ CREATE TABLE IF NOT EXISTS age_groups (
 CREATE TABLE IF NOT EXISTS products (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE,
-    sku TEXT NOT NULL UNIQUE,
+    slug TEXT NOT NULL,
+    sku TEXT NOT NULL,
     short_description TEXT,
     description TEXT,
     base_price NUMERIC(10, 2) NOT NULL,
@@ -43,7 +46,9 @@ CREATE TABLE IF NOT EXISTS products (
     is_trending BOOLEAN DEFAULT false,
     is_limited_edition BOOLEAN DEFAULT false,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    CONSTRAINT products_slug_key UNIQUE (slug),
+    CONSTRAINT products_sku_key UNIQUE (sku)
 );
 
 CREATE TABLE IF NOT EXISTS product_images (
@@ -80,14 +85,15 @@ CREATE TABLE IF NOT EXISTS bank_transfer_receipts (
     customer_id UUID,
     customer_name TEXT NOT NULL,
     bank_name TEXT NOT NULL,
-    transaction_reference TEXT NOT NULL UNIQUE,
+    transaction_reference TEXT NOT NULL,
     amount NUMERIC(10, 2) NOT NULL,
     receipt_url TEXT NOT NULL,
     transfer_date DATE NOT NULL,
     status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'verified', 'failed', 'refunded')),
     admin_notes TEXT,
     verified_by UUID,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    CONSTRAINT bank_transfer_receipts_tx_ref_key UNIQUE (transaction_reference)
 );
 
 -- Audit Logging Table
@@ -108,16 +114,19 @@ ALTER TABLE categories ENABLE ROW LEVEL SECURITY;
 ALTER TABLE bank_transfer_receipts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE audit_logs ENABLE ROW LEVEL SECURITY;
 
--- RLS Policies: Public Read Access for active products & categories
+-- RLS Policies with Safe Re-run Checks
+DROP POLICY IF EXISTS "Public Read Active Products" ON products;
 CREATE POLICY "Public Read Active Products" ON products
     FOR SELECT USING (is_active = true);
 
+DROP POLICY IF EXISTS "Public Read Categories" ON categories;
 CREATE POLICY "Public Read Categories" ON categories
     FOR SELECT USING (is_active = true);
 
--- RLS Policies: Customer Insert for bank receipts
+DROP POLICY IF EXISTS "Customer Insert Bank Receipts" ON bank_transfer_receipts;
 CREATE POLICY "Customer Insert Bank Receipts" ON bank_transfer_receipts
     FOR INSERT WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Admin All Access Bank Receipts" ON bank_transfer_receipts;
 CREATE POLICY "Admin All Access Bank Receipts" ON bank_transfer_receipts
     FOR ALL USING (auth.jwt() ->> 'role' IN ('admin', 'super_admin'));

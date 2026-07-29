@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Workspaces Path Resolutions mapping */
+    "baseUrl": ".",
+    "paths": {
+      "@bw/shared": ["../../packages/shared/src"],
+      "@bw/shared/*": ["../../packages/shared/src/*"],
+      "@black-white/shared": ["../../packages/shared/src"],
+      "@black-white/shared/*": ["../../packages/shared/src/*"]
+    }
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+

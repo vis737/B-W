@@ -1,0 +1,24 @@
+[
+  {
+    "code": "MERIS10",
+    "type": "percentage",
+    "value": 10,
+    "expiryDate": "2027-01-01",
+    "usageLimit": 300,
+    "usageCount": 42,
+    "minimumCartValue": 500,
+    "description": "Enjoy 10% off on all luxury items across store",
+    "active": true
+  },
+  {
+    "code": "FESTIVE20",
+    "type": "percentage",
+    "value": 20,
+    "expiryDate": "2026-12-25",
+    "usageLimit": 150,
+    "usageCount": 11,
+    "minimumCartValue": 1500,
+    "description": "Special 20% discount on order carts above Rs.1500",
+    "active": true
+  }
+]

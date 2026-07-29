@@ -1,0 +1,17 @@
+{
+  "name": "black-white-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev:web",
+    "install:all": "npm install",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:api": "npm run dev --workspace=apps/api"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true
+  }
+}

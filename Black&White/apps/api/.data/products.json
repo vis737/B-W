@@ -1,0 +1,935 @@
+[
+  {
+    "id": "p-101",
+    "name": "Sea Island Cotton Tuxedo Shirt",
+    "slug": "sea-island-cotton-tuxedo-shirt",
+    "sku": "BW-SHIRT-001",
+    "short_description": "Precision-tailored pleated tuxedo shirt in 100% Sea Island cotton.",
+    "description": "Masterfully crafted with hand-stitched bib pleating, French cuffs, and mother-of-pearl buttons.",
+    "base_price": 450,
+    "discount_price": 390,
+    "currency": "USD",
+    "gender": "men",
+    "categories": [
+      {
+        "id": "cat-1",
+        "name": "Shirts",
+        "slug": "shirts",
+        "description": "Tailored luxury shirts crafted from Sea Island cotton.",
+        "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+        "is_active": true,
+        "is_featured": true,
+        "sort_order": 1
+      }
+    ],
+    "age_groups": [
+      {
+        "id": "ag-young-adult",
+        "name": "Young Adult (18-25)",
+        "slug": "young-adult",
+        "min_months": 216,
+        "max_months": 300,
+        "sort_order": 2,
+        "is_active": true
+      },
+      {
+        "id": "ag-adult",
+        "name": "Adult (26-40)",
+        "slug": "adult",
+        "min_months": 312,
+        "max_months": 480,
+        "sort_order": 3,
+        "is_active": true
+      },
+      {
+        "id": "ag-mature",
+        "name": "Mature (41-60)",
+        "slug": "mature",
+        "min_months": 492,
+        "max_months": 720,
+        "sort_order": 4,
+        "is_active": true
+      }
+    ],
+    "images": [
+      {
+        "id": "img-p-101",
+        "product_id": "p-101",
+        "url": "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?q=80&w=1000&auto=format&fit=crop",
+        "alt_text": "Sea Island cotton tuxedo shirt",
+        "sort_order": 1,
+        "is_primary": true
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-p-101-1",
+        "product_id": "p-101",
+        "sku": "BW-SHIRT-001-S",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "S",
+        "stock_quantity": 6,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-101-2",
+        "product_id": "p-101",
+        "sku": "BW-SHIRT-001-M",
+        "color": "Chalk White",
+        "color_hex": "#f5f5f5",
+        "size": "M",
+        "stock_quantity": 10,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-101-3",
+        "product_id": "p-101",
+        "sku": "BW-SHIRT-001-L",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "L",
+        "stock_quantity": 14,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-101-4",
+        "product_id": "p-101",
+        "sku": "BW-SHIRT-001-XL",
+        "color": "Chalk White",
+        "color_hex": "#f5f5f5",
+        "size": "XL",
+        "stock_quantity": 18,
+        "price_adjustment": 0,
+        "is_active": true
+      }
+    ],
+    "brand": "Black & White Private Reserve",
+    "fit_guide": "Tailored slim fit. Take your true size.",
+    "fabric_info": "100% certified West Indian Sea Island cotton.",
+    "wash_care": "Dry clean only or delicate hand wash cold.",
+    "return_policy": "Complimentary 30-day returns.",
+    "fit_type": "Slim",
+    "material": "Sea Island Cotton",
+    "is_active": true,
+    "is_featured": true,
+    "is_new_arrival": true,
+    "is_trending": true,
+    "is_limited_edition": true,
+    "average_rating": 4.9,
+    "review_count": 28,
+    "created_at": "2026-01-15T00:00:00Z",
+    "updated_at": "2026-07-24T00:00:00Z"
+  },
+  {
+    "id": "p-102",
+    "name": "Double-Breasted Wool-Cashmere Overcoat",
+    "slug": "double-breasted-wool-cashmere-overcoat",
+    "sku": "BW-COAT-002",
+    "short_description": "Architectural silhouette coat in heavy wool and grade-A cashmere blend.",
+    "description": "Sculpted shoulders, wide peak lapels, and horn buttons define this signature outerwear garment.",
+    "base_price": 1850,
+    "discount_price": 1650,
+    "currency": "USD",
+    "gender": "men",
+    "categories": [
+      {
+        "id": "cat-4",
+        "name": "Coats",
+        "slug": "coats",
+        "description": "Double-breasted trench coats and overcoats.",
+        "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+        "is_active": true,
+        "is_featured": true,
+        "sort_order": 4
+      }
+    ],
+    "age_groups": [
+      {
+        "id": "ag-young-adult",
+        "name": "Young Adult (18-25)",
+        "slug": "young-adult",
+        "min_months": 216,
+        "max_months": 300,
+        "sort_order": 2,
+        "is_active": true
+      },
+      {
+        "id": "ag-adult",
+        "name": "Adult (26-40)",
+        "slug": "adult",
+        "min_months": 312,
+        "max_months": 480,
+        "sort_order": 3,
+        "is_active": true
+      },
+      {
+        "id": "ag-mature",
+        "name": "Mature (41-60)",
+        "slug": "mature",
+        "min_months": 492,
+        "max_months": 720,
+        "sort_order": 4,
+        "is_active": true
+      }
+    ],
+    "images": [
+      {
+        "id": "img-p-102",
+        "product_id": "p-102",
+        "url": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1000&auto=format&fit=crop",
+        "alt_text": "Wool cashmere overcoat",
+        "sort_order": 1,
+        "is_primary": true
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-p-102-1",
+        "product_id": "p-102",
+        "sku": "BW-COAT-002-M",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "M",
+        "stock_quantity": 6,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-102-2",
+        "product_id": "p-102",
+        "sku": "BW-COAT-002-L",
+        "color": "Chalk White",
+        "color_hex": "#f5f5f5",
+        "size": "L",
+        "stock_quantity": 10,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-102-3",
+        "product_id": "p-102",
+        "sku": "BW-COAT-002-XL",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "XL",
+        "stock_quantity": 14,
+        "price_adjustment": 0,
+        "is_active": true
+      }
+    ],
+    "brand": "Black & White Atelier",
+    "fit_guide": "Structured regular fit.",
+    "fabric_info": "80% virgin wool, 20% cashmere.",
+    "wash_care": "Specialist dry clean only.",
+    "return_policy": "Complimentary 30-day returns.",
+    "fit_type": "Regular",
+    "material": "Wool & Cashmere",
+    "is_active": true,
+    "is_featured": true,
+    "is_new_arrival": false,
+    "is_trending": true,
+    "is_limited_edition": true,
+    "average_rating": 5,
+    "review_count": 14,
+    "created_at": "2026-02-10T00:00:00Z",
+    "updated_at": "2026-07-18T00:00:00Z"
+  },
+  {
+    "id": "p-103",
+    "name": "Minimalist Leather Low-Top Sneakers",
+    "slug": "minimalist-leather-low-top-sneakers",
+    "sku": "BW-SHOE-003",
+    "short_description": "Full-grain Italian calfskin sneakers with hand-stitched Margom rubber soles.",
+    "description": "Designed for effortless elegance with waxed cotton laces and ultra-soft leather lining.",
+    "base_price": 380,
+    "currency": "USD",
+    "gender": "men",
+    "categories": [
+      {
+        "id": "cat-8",
+        "name": "Shoes",
+        "slug": "shoes",
+        "description": "Handcrafted Italian footwear.",
+        "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+        "is_active": true,
+        "is_featured": false,
+        "sort_order": 8
+      }
+    ],
+    "age_groups": [
+      {
+        "id": "ag-teen",
+        "name": "Teen (13-17)",
+        "slug": "teen",
+        "min_months": 156,
+        "max_months": 204,
+        "sort_order": 1,
+        "is_active": true
+      },
+      {
+        "id": "ag-young-adult",
+        "name": "Young Adult (18-25)",
+        "slug": "young-adult",
+        "min_months": 216,
+        "max_months": 300,
+        "sort_order": 2,
+        "is_active": true
+      },
+      {
+        "id": "ag-adult",
+        "name": "Adult (26-40)",
+        "slug": "adult",
+        "min_months": 312,
+        "max_months": 480,
+        "sort_order": 3,
+        "is_active": true
+      },
+      {
+        "id": "ag-mature",
+        "name": "Mature (41-60)",
+        "slug": "mature",
+        "min_months": 492,
+        "max_months": 720,
+        "sort_order": 4,
+        "is_active": true
+      }
+    ],
+    "images": [
+      {
+        "id": "img-p-103",
+        "product_id": "p-103",
+        "url": "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1000&auto=format&fit=crop",
+        "alt_text": "Minimalist leather sneakers",
+        "sort_order": 1,
+        "is_primary": true
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-p-103-1",
+        "product_id": "p-103",
+        "sku": "BW-SHOE-003-UK8",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "UK 8",
+        "stock_quantity": 6,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-103-2",
+        "product_id": "p-103",
+        "sku": "BW-SHOE-003-UK9",
+        "color": "Chalk White",
+        "color_hex": "#f5f5f5",
+        "size": "UK 9",
+        "stock_quantity": 10,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-103-3",
+        "product_id": "p-103",
+        "sku": "BW-SHOE-003-UK10",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "UK 10",
+        "stock_quantity": 14,
+        "price_adjustment": 0,
+        "is_active": true
+      }
+    ],
+    "brand": "B&W Footwear Milan",
+    "fit_guide": "Runs true to size.",
+    "fabric_info": "100% Italian nappa calfskin.",
+    "wash_care": "Wipe clean with soft leather conditioner.",
+    "return_policy": "30-day return policy.",
+    "fit_type": "Regular",
+    "material": "Full-grain Leather",
+    "is_active": true,
+    "is_featured": true,
+    "is_new_arrival": true,
+    "is_trending": false,
+    "is_limited_edition": false,
+    "average_rating": 4.8,
+    "review_count": 42,
+    "created_at": "2026-03-01T00:00:00Z",
+    "updated_at": "2026-07-21T00:00:00Z"
+  },
+  {
+    "id": "p-104",
+    "name": "Heirloom Velvet Tuxedo Blazer",
+    "slug": "heirloom-velvet-tuxedo-blazer",
+    "sku": "BW-BLAZ-004",
+    "short_description": "Deep black cotton velvet evening blazer with silk satin shawl lapels.",
+    "description": "An understated masterpiece for grand celebrations, cut with precision shoulders and silk jet pockets.",
+    "base_price": 1200,
+    "discount_price": 980,
+    "currency": "USD",
+    "gender": "men",
+    "categories": [
+      {
+        "id": "cat-3",
+        "name": "Blazers",
+        "slug": "blazers",
+        "description": "Structured wool-silk and unstructured linen blazers.",
+        "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+        "is_active": true,
+        "is_featured": true,
+        "sort_order": 3
+      },
+      {
+        "id": "cat-7",
+        "name": "Suits",
+        "slug": "suits",
+        "description": "Two-piece and three-piece Italian wool suits.",
+        "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+        "is_active": true,
+        "is_featured": false,
+        "sort_order": 7
+      }
+    ],
+    "age_groups": [
+      {
+        "id": "ag-young-adult",
+        "name": "Young Adult (18-25)",
+        "slug": "young-adult",
+        "min_months": 216,
+        "max_months": 300,
+        "sort_order": 2,
+        "is_active": true
+      },
+      {
+        "id": "ag-adult",
+        "name": "Adult (26-40)",
+        "slug": "adult",
+        "min_months": 312,
+        "max_months": 480,
+        "sort_order": 3,
+        "is_active": true
+      },
+      {
+        "id": "ag-mature",
+        "name": "Mature (41-60)",
+        "slug": "mature",
+        "min_months": 492,
+        "max_months": 720,
+        "sort_order": 4,
+        "is_active": true
+      }
+    ],
+    "images": [
+      {
+        "id": "img-p-104",
+        "product_id": "p-104",
+        "url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+        "alt_text": "Velvet tuxedo blazer",
+        "sort_order": 1,
+        "is_primary": true
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-p-104-1",
+        "product_id": "p-104",
+        "sku": "BW-BLAZ-004-38R",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "38R",
+        "stock_quantity": 6,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-104-2",
+        "product_id": "p-104",
+        "sku": "BW-BLAZ-004-40R",
+        "color": "Chalk White",
+        "color_hex": "#f5f5f5",
+        "size": "40R",
+        "stock_quantity": 10,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-104-3",
+        "product_id": "p-104",
+        "sku": "BW-BLAZ-004-42R",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "42R",
+        "stock_quantity": 14,
+        "price_adjustment": 0,
+        "is_active": true
+      }
+    ],
+    "brand": "Black & White Haute Couture",
+    "fit_guide": "Italian slim fit.",
+    "fabric_info": "Cotton velvet with silk lapels.",
+    "wash_care": "Dry clean only.",
+    "return_policy": "Complimentary 30-day returns.",
+    "fit_type": "Slim",
+    "material": "Cotton Velvet",
+    "is_active": true,
+    "is_featured": true,
+    "is_new_arrival": false,
+    "is_trending": true,
+    "is_limited_edition": true,
+    "average_rating": 4.95,
+    "review_count": 19,
+    "created_at": "2026-04-12T00:00:00Z",
+    "updated_at": "2026-07-22T00:00:00Z"
+  },
+  {
+    "id": "p-105",
+    "name": "Silk-Linen Oversized Graphic Tee",
+    "slug": "silk-linen-oversized-graphic-tee",
+    "sku": "BW-TEE-005",
+    "short_description": "Avant-garde oversized t-shirt in breathable silk-linen blend.",
+    "description": "Dropped shoulders, raw edges, and tonal monogram embroidery at the nape.",
+    "base_price": 220,
+    "currency": "USD",
+    "gender": "men",
+    "categories": [
+      {
+        "id": "cat-2",
+        "name": "T-Shirts",
+        "slug": "t-shirts",
+        "description": "Essential silk-cotton hybrid t-shirts.",
+        "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+        "is_active": true,
+        "is_featured": true,
+        "sort_order": 2
+      }
+    ],
+    "age_groups": [
+      {
+        "id": "ag-teen",
+        "name": "Teen (13-17)",
+        "slug": "teen",
+        "min_months": 156,
+        "max_months": 204,
+        "sort_order": 1,
+        "is_active": true
+      },
+      {
+        "id": "ag-young-adult",
+        "name": "Young Adult (18-25)",
+        "slug": "young-adult",
+        "min_months": 216,
+        "max_months": 300,
+        "sort_order": 2,
+        "is_active": true
+      },
+      {
+        "id": "ag-adult",
+        "name": "Adult (26-40)",
+        "slug": "adult",
+        "min_months": 312,
+        "max_months": 480,
+        "sort_order": 3,
+        "is_active": true
+      },
+      {
+        "id": "ag-mature",
+        "name": "Mature (41-60)",
+        "slug": "mature",
+        "min_months": 492,
+        "max_months": 720,
+        "sort_order": 4,
+        "is_active": true
+      }
+    ],
+    "images": [
+      {
+        "id": "img-p-105",
+        "product_id": "p-105",
+        "url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1000&auto=format&fit=crop",
+        "alt_text": "Silk linen graphic tee",
+        "sort_order": 1,
+        "is_primary": true
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-p-105-1",
+        "product_id": "p-105",
+        "sku": "BW-TEE-005-S",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "S",
+        "stock_quantity": 6,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-105-2",
+        "product_id": "p-105",
+        "sku": "BW-TEE-005-M",
+        "color": "Chalk White",
+        "color_hex": "#f5f5f5",
+        "size": "M",
+        "stock_quantity": 10,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-105-3",
+        "product_id": "p-105",
+        "sku": "BW-TEE-005-L",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "L",
+        "stock_quantity": 14,
+        "price_adjustment": 0,
+        "is_active": true
+      }
+    ],
+    "brand": "B&W Studio",
+    "fit_guide": "Intentionally oversized.",
+    "fabric_info": "60% mulberry silk, 40% organic linen.",
+    "wash_care": "Hand wash cold.",
+    "return_policy": "Complimentary 30-day returns.",
+    "fit_type": "Oversized",
+    "material": "Silk-Linen Blend",
+    "is_active": true,
+    "is_featured": false,
+    "is_new_arrival": true,
+    "is_trending": true,
+    "is_limited_edition": false,
+    "average_rating": 4.7,
+    "review_count": 31,
+    "created_at": "2026-05-01T00:00:00Z",
+    "updated_at": "2026-07-23T00:00:00Z"
+  },
+  {
+    "id": "p-106",
+    "name": "Japanese Selvedge Tapered Jeans",
+    "slug": "japanese-selvedge-tapered-jeans",
+    "sku": "BW-JEAN-006",
+    "short_description": "14oz Kurabo Mills shuttle-loom selvedge denim in raw indigo black.",
+    "description": "Custom silver hardware, hidden rivet pockets, and embossed black leather back patch.",
+    "base_price": 340,
+    "currency": "USD",
+    "gender": "men",
+    "categories": [
+      {
+        "id": "cat-5",
+        "name": "Jeans",
+        "slug": "jeans",
+        "description": "Japanese selvedge and Italian stretch denim.",
+        "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+        "is_active": true,
+        "is_featured": true,
+        "sort_order": 5
+      }
+    ],
+    "age_groups": [
+      {
+        "id": "ag-teen",
+        "name": "Teen (13-17)",
+        "slug": "teen",
+        "min_months": 156,
+        "max_months": 204,
+        "sort_order": 1,
+        "is_active": true
+      },
+      {
+        "id": "ag-young-adult",
+        "name": "Young Adult (18-25)",
+        "slug": "young-adult",
+        "min_months": 216,
+        "max_months": 300,
+        "sort_order": 2,
+        "is_active": true
+      },
+      {
+        "id": "ag-adult",
+        "name": "Adult (26-40)",
+        "slug": "adult",
+        "min_months": 312,
+        "max_months": 480,
+        "sort_order": 3,
+        "is_active": true
+      },
+      {
+        "id": "ag-mature",
+        "name": "Mature (41-60)",
+        "slug": "mature",
+        "min_months": 492,
+        "max_months": 720,
+        "sort_order": 4,
+        "is_active": true
+      }
+    ],
+    "images": [
+      {
+        "id": "img-p-106",
+        "product_id": "p-106",
+        "url": "https://images.unsplash.com/photo-1542272604-780c36856842?q=80&w=1000&auto=format&fit=crop",
+        "alt_text": "Japanese selvedge jeans",
+        "sort_order": 1,
+        "is_primary": true
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-p-106-1",
+        "product_id": "p-106",
+        "sku": "BW-JEAN-006-30",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "30",
+        "stock_quantity": 6,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-106-2",
+        "product_id": "p-106",
+        "sku": "BW-JEAN-006-32",
+        "color": "Chalk White",
+        "color_hex": "#f5f5f5",
+        "size": "32",
+        "stock_quantity": 10,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-106-3",
+        "product_id": "p-106",
+        "sku": "BW-JEAN-006-34",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "34",
+        "stock_quantity": 14,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-106-4",
+        "product_id": "p-106",
+        "sku": "BW-JEAN-006-36",
+        "color": "Chalk White",
+        "color_hex": "#f5f5f5",
+        "size": "36",
+        "stock_quantity": 18,
+        "price_adjustment": 0,
+        "is_active": true
+      }
+    ],
+    "brand": "B&W Denim Lab",
+    "fit_guide": "Tapered fit.",
+    "fabric_info": "100% cotton 14oz selvedge.",
+    "wash_care": "Soak inside out in cold water.",
+    "return_policy": "Complimentary 30-day returns.",
+    "fit_type": "Regular",
+    "material": "Selvedge Denim",
+    "is_active": true,
+    "is_featured": true,
+    "is_new_arrival": false,
+    "is_trending": true,
+    "is_limited_edition": false,
+    "average_rating": 4.85,
+    "review_count": 53,
+    "created_at": "2026-03-20T00:00:00Z",
+    "updated_at": "2026-07-24T00:00:00Z"
+  },
+  {
+    "id": "p-107",
+    "name": "Haute Parfumerie Noir & Blanc 100ml",
+    "slug": "noir-and-blanc-perfume-100ml",
+    "sku": "BW-PERF-007",
+    "short_description": "Intense extrait de parfum with black oud, smoked vetiver, and bergamot.",
+    "description": "Hand-blown black crystal bottle with gold leaf stopper accents, formulated in Grasse.",
+    "base_price": 390,
+    "currency": "USD",
+    "gender": "unisex",
+    "categories": [
+      {
+        "id": "cat-9",
+        "name": "Perfumes",
+        "slug": "perfumes",
+        "description": "Signature haute parfumerie collection.",
+        "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+        "is_active": true,
+        "is_featured": false,
+        "sort_order": 9
+      }
+    ],
+    "age_groups": [
+      {
+        "id": "ag-young-adult",
+        "name": "Young Adult (18-25)",
+        "slug": "young-adult",
+        "min_months": 216,
+        "max_months": 300,
+        "sort_order": 2,
+        "is_active": true
+      },
+      {
+        "id": "ag-adult",
+        "name": "Adult (26-40)",
+        "slug": "adult",
+        "min_months": 312,
+        "max_months": 480,
+        "sort_order": 3,
+        "is_active": true
+      },
+      {
+        "id": "ag-mature",
+        "name": "Mature (41-60)",
+        "slug": "mature",
+        "min_months": 492,
+        "max_months": 720,
+        "sort_order": 4,
+        "is_active": true
+      }
+    ],
+    "images": [
+      {
+        "id": "img-p-107",
+        "product_id": "p-107",
+        "url": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1000&auto=format&fit=crop",
+        "alt_text": "Noir and Blanc perfume",
+        "sort_order": 1,
+        "is_primary": true
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-p-107-1",
+        "product_id": "p-107",
+        "sku": "BW-PERF-007-100ml",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "100ml",
+        "stock_quantity": 6,
+        "price_adjustment": 0,
+        "is_active": true
+      }
+    ],
+    "brand": "Black & White Fragrances Grasse",
+    "fit_guide": "Extrait de parfum formulation.",
+    "fabric_info": "Natural essences and rare oud oil.",
+    "wash_care": "Keep away from direct heat and light.",
+    "return_policy": "Unopened fragrance returns accepted within 14 days.",
+    "material": "Glass & Essence",
+    "is_active": true,
+    "is_featured": true,
+    "is_new_arrival": true,
+    "is_trending": true,
+    "is_limited_edition": true,
+    "average_rating": 5,
+    "review_count": 89,
+    "created_at": "2026-01-01T00:00:00Z",
+    "updated_at": "2026-07-24T00:00:00Z"
+  },
+  {
+    "id": "p-108",
+    "name": "Bespoke Silk Jacquard Sherwani Set",
+    "slug": "bespoke-silk-jacquard-sherwani-set",
+    "sku": "BW-ETH-008",
+    "short_description": "Royal sherwani with zardosi embroidery and matching churidar pants.",
+    "description": "Hand-loomed raw silk woven with subtle geometric motifs and mother-of-pearl buttons.",
+    "base_price": 1600,
+    "discount_price": 1450,
+    "currency": "USD",
+    "gender": "men",
+    "categories": [
+      {
+        "id": "cat-6",
+        "name": "Ethnic Wear",
+        "slug": "ethnic-wear",
+        "description": "Heritage formal and festive attire.",
+        "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+        "is_active": true,
+        "is_featured": true,
+        "sort_order": 6
+      }
+    ],
+    "age_groups": [
+      {
+        "id": "ag-young-adult",
+        "name": "Young Adult (18-25)",
+        "slug": "young-adult",
+        "min_months": 216,
+        "max_months": 300,
+        "sort_order": 2,
+        "is_active": true
+      },
+      {
+        "id": "ag-adult",
+        "name": "Adult (26-40)",
+        "slug": "adult",
+        "min_months": 312,
+        "max_months": 480,
+        "sort_order": 3,
+        "is_active": true
+      },
+      {
+        "id": "ag-mature",
+        "name": "Mature (41-60)",
+        "slug": "mature",
+        "min_months": 492,
+        "max_months": 720,
+        "sort_order": 4,
+        "is_active": true
+      }
+    ],
+    "images": [
+      {
+        "id": "img-p-108",
+        "product_id": "p-108",
+        "url": "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop",
+        "alt_text": "Silk jacquard sherwani",
+        "sort_order": 1,
+        "is_primary": true
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-p-108-1",
+        "product_id": "p-108",
+        "sku": "BW-ETH-008-M",
+        "color": "Midnight Black",
+        "color_hex": "#0a0a0a",
+        "size": "M",
+        "stock_quantity": 6,
+        "price_adjustment": 0,
+        "is_active": true
+      },
+      {
+        "id": "var-p-108-2",
+        "product_id": "p-108",
+        "sku": "BW-ETH-008-L",
+        "color": "Chalk White",
+        "color_hex": "#f5f5f5",
+        "size": "L",
+        "stock_quantity": 10,
+        "price_adjustment": 0,
+        "is_active": true
+      }
+    ],
+    "brand": "Black & White Heritage Atelier",
+    "fit_guide": "Tailored fit with regal drape.",
+    "fabric_info": "100% pure Varanasi silk.",
+    "wash_care": "Specialist dry clean.",
+    "return_policy": "Complimentary 30-day returns.",
+    "fit_type": "Slim",
+    "material": "Raw Silk",
+    "is_active": true,
+    "is_featured": true,
+    "is_new_arrival": true,
+    "is_trending": false,
+    "is_limited_edition": true,
+    "average_rating": 4.9,
+    "review_count": 9,
+    "created_at": "2026-04-01T00:00:00Z",
+    "updated_at": "2026-07-24T00:00:00Z"
+  }
+]

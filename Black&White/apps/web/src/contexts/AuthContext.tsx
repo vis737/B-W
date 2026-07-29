@@ -29,6 +29,7 @@ interface AuthContextType {
   isClerkConfigured: boolean;
   signInWithGoogle: () => Promise<void>;
   signInWithApple: () => Promise<void>;
+  openClerkModal: () => void;
 
   // Secret Admin State
   adminUser: User | null;
@@ -102,22 +103,50 @@ const ClerkAuthProviderInner: React.FC<{ children: ReactNode }> = ({ children })
       }
     : localCustomer;
 
+  const clerk = useClerk();
+
+  const openClerkModal = () => {
+    if (clerk && clerk.openSignIn) {
+      clerk.openSignIn();
+    }
+  };
+
   const signInWithGoogle = async () => {
-    if (!signIn) return;
-    await signIn.authenticateWithRedirect({
-      strategy: 'oauth_google',
-      redirectUrl: '/sso-callback',
-      redirectUrlComplete: '/',
-    });
+    try {
+      if (signIn) {
+        await signIn.authenticateWithRedirect({
+          strategy: 'oauth_google',
+          redirectUrl: '/sso-callback',
+          redirectUrlComplete: '/',
+        });
+      } else if (clerk?.openSignIn) {
+        clerk.openSignIn();
+      }
+    } catch (err: any) {
+      console.warn('Clerk Google SSO error, falling back to Clerk Sign-In Modal:', err);
+      if (clerk?.openSignIn) {
+        clerk.openSignIn();
+      }
+    }
   };
 
   const signInWithApple = async () => {
-    if (!signIn) return;
-    await signIn.authenticateWithRedirect({
-      strategy: 'oauth_apple',
-      redirectUrl: '/sso-callback',
-      redirectUrlComplete: '/',
-    });
+    try {
+      if (signIn) {
+        await signIn.authenticateWithRedirect({
+          strategy: 'oauth_apple',
+          redirectUrl: '/sso-callback',
+          redirectUrlComplete: '/',
+        });
+      } else if (clerk?.openSignIn) {
+        clerk.openSignIn();
+      }
+    } catch (err: any) {
+      console.warn('Clerk Apple SSO error, falling back to Clerk Sign-In Modal:', err);
+      if (clerk?.openSignIn) {
+        clerk.openSignIn();
+      }
+    }
   };
 
   const loginCustomer = async (email: string, _pass: string, remember: boolean): Promise<boolean> => {
@@ -206,6 +235,7 @@ const ClerkAuthProviderInner: React.FC<{ children: ReactNode }> = ({ children })
         isClerkConfigured: true,
         signInWithGoogle,
         signInWithApple,
+        openClerkModal,
 
         adminUser,
         isAdminAuthenticated: !!adminUser,
@@ -341,6 +371,10 @@ const MockAuthProviderInner: React.FC<{ children: ReactNode }> = ({ children }) 
     sessionStorage.removeItem('bw_admin_token');
   };
 
+  const openClerkModal = () => {
+    console.warn('Clerk publishable key missing in .env');
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -357,6 +391,7 @@ const MockAuthProviderInner: React.FC<{ children: ReactNode }> = ({ children }) 
         isClerkConfigured: false,
         signInWithGoogle,
         signInWithApple,
+        openClerkModal,
 
         adminUser,
         isAdminAuthenticated: !!adminUser,

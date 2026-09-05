@@ -1,5 +1,5 @@
 // apps/web/src/components/ui/Dialog.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -12,6 +12,16 @@ export interface DialogProps {
 }
 
 export const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, title, children, size = 'md' }) => {
+  // Lock background scroll while the dialog is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isOpen]);
+
   const sizeClasses = {
     sm: 'max-w-md',
     md: 'max-w-lg',

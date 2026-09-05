@@ -1,5 +1,5 @@
 // apps/web/src/components/ui/Drawer.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -25,6 +25,16 @@ export const Drawer: React.FC<DrawerProps> = ({
     md: 'max-w-lg',
     lg: 'max-w-xl',
   };
+
+  // Lock background scroll while the drawer is open (mobile-first UX)
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isOpen]);
 
   const slideVariants = {
     left: {

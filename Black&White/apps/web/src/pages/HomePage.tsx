@@ -103,12 +103,6 @@ export const HomePage: React.FC = () => {
             >
               Explore Gentlemen Catalog &rarr;
             </Link>
-            <Link
-              to="/membership"
-              className="px-10 py-4 bg-black border-2 border-white text-white font-mono font-bold text-xs uppercase tracking-[0.25em] hover:bg-white hover:text-black transition-all duration-300 hover-lift"
-            >
-              Subscribe Gentleman Box
-            </Link>
           </motion.div>
         </div>
 
@@ -145,72 +139,33 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-5">
           {MOCK_CATEGORIES.slice(0, 12).map((cat) => (
             <Link
               key={cat.id}
               to={`/shop?category=${cat.slug}`}
-              className="group relative h-64 overflow-hidden rounded-xl border-2 border-black bg-zinc-900 flex flex-col justify-end p-4 transition-all duration-300 hover-lift shadow-md"
+              className="group relative aspect-[4/5] sm:aspect-auto sm:h-64 overflow-hidden rounded-xl border-2 border-black bg-zinc-900 flex flex-col justify-end p-3 sm:p-4 transition-all duration-300 hover-lift shadow-md"
             >
               <img
                 src={cat.image_url}
                 alt={cat.name}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-110 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
               <div className="relative z-10">
-                <h3 className="font-serif text-lg font-bold uppercase tracking-wider text-white group-hover:text-amber-400 transition-colors">
+                <h3 className="font-serif text-sm sm:text-lg font-bold uppercase tracking-wider text-white group-hover:text-amber-400 transition-colors">
                   {cat.name}
                 </h3>
-                <p className="text-[11px] font-sans text-zinc-300 line-clamp-1 mt-0.5">{cat.description}</p>
+                <p className="hidden sm:block text-[11px] font-sans text-zinc-300 line-clamp-1 mt-0.5">{cat.description}</p>
               </div>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* 3. GENTLEMAN SUBSCRIPTION BANNER (HIGH-CONTRAST BLACK SECTION) */}
-      <section className="bg-black text-white py-20 border-y-4 border-black">
-        <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7 space-y-6">
-            <span className="px-4 py-1.5 bg-amber-500 text-black text-xs font-mono font-bold uppercase tracking-[0.3em] rounded-full">
-              ★ Gentleman's Atelier Box
-            </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-black uppercase text-white leading-tight">
-              Bespoke Wardrobe Delivered to Your Door
-            </h2>
-            <p className="text-zinc-300 text-sm md:text-base font-light leading-relaxed max-w-xl">
-              Subscribe to the Gentlemen's Atelier Box. Receive quarterly or monthly curated Italian wool suits, Sea Island cotton dress shirts, and hand-finished accessories with master tailor alterations included.
-            </p>
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Link
-                to="/membership"
-                className="px-8 py-4 bg-white text-black font-mono font-bold text-xs uppercase tracking-widest hover:bg-amber-400 transition-colors shadow-2xl hover-lift"
-              >
-                View Gentleman Subscription Plans &rarr;
-              </Link>
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 relative h-96 rounded-2xl overflow-hidden border-2 border-zinc-700 shadow-2xl hover-lift">
-            <img
-              src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop"
-              alt="Bespoke Gentleman Suit"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end">
-              <span className="text-amber-400 font-mono text-xs uppercase font-bold tracking-widest">
-                Gentlemen Club Benefit
-              </span>
-              <span className="text-white font-serif font-bold text-lg">
-                Complimentary Master Tailor Fitting Session Included
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. AGE-BASED MENSWEAR MATRIX (STARK CONTRAST PANEL) */}
+      {/* 3. AGE-BASED MENSWEAR MATRIX (STARK CONTRAST PANEL) */}
       <section className="py-24 bg-zinc-50 border-b-2 border-black text-black">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
@@ -248,6 +203,8 @@ export const HomePage: React.FC = () => {
               <img
                 src={MOCK_AGE_GROUPS[activeAgeIndex].image_url}
                 alt={MOCK_AGE_GROUPS[activeAgeIndex].name}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-8 flex flex-col justify-end text-white">
@@ -268,7 +225,7 @@ export const HomePage: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 {MOCK_PRODUCTS.slice(0, 2).map((prod) => (
                   <div key={prod.id} className="p-4 border-2 border-black rounded-xl bg-white flex gap-4 items-center hover-lift shadow-md">
-                    <img src={prod.images[0].url} alt={prod.name} className="w-16 h-20 object-cover rounded-lg bg-zinc-100" />
+                    <img src={prod.images[0].url} alt={prod.name} loading="lazy" decoding="async" className="w-16 h-20 object-cover rounded-lg bg-zinc-100" />
                     <div>
                       <h4 className="font-serif text-sm font-bold text-black line-clamp-1">{prod.name}</h4>
                       <p className="text-amber-600 font-mono font-bold text-xs mt-1">${prod.base_price.toLocaleString()}</p>
@@ -340,11 +297,11 @@ export const HomePage: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
           {MOCK_PRODUCTS.map((product) => (
             <div
               key={product.id}
-              className="group relative bg-white border-2 border-black rounded-2xl overflow-hidden flex flex-col justify-between hover-lift shadow-lg transition-all duration-300"
+              className="group relative bg-white border-2 border-black rounded-xl sm:rounded-2xl overflow-hidden flex flex-col justify-between hover-lift shadow-lg transition-all duration-300"
             >
               {/* Badges */}
               <div className="absolute top-4 left-4 z-10 flex flex-col gap-1.5">
@@ -376,44 +333,58 @@ export const HomePage: React.FC = () => {
               </button>
 
               {/* Product Image with Zoom Effect */}
-              <Link to={`/product/${product.slug}`} className="relative block h-96 overflow-hidden bg-zinc-100 img-zoom-container">
-                <img
-                  src={product.images[0].url}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              </Link>
+              <div className="relative">
+                <Link to={`/product/${product.slug}`} className="block overflow-hidden bg-zinc-100 img-zoom-container aspect-[3/4]">
+                  <img
+                    src={product.images[0].url}
+                    alt={product.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                  />
+                </Link>
+                {/* Mobile quick-add (kept outside the link for valid markup) */}
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  aria-label={`Add ${product.name} to bag`}
+                  className="absolute bottom-3 right-3 z-10 flex sm:hidden items-center justify-center w-11 h-11 rounded-full bg-black/90 text-white border border-white/25 shadow-xl backdrop-blur-sm hover:bg-amber-500 hover:text-black active:scale-90 transition-all duration-200"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                  </svg>
+                </button>
+              </div>
 
               {/* Product Details */}
-              <div className="p-6 flex flex-col flex-1 justify-between bg-white border-t-2 border-black">
+              <div className="p-3 sm:p-4 lg:p-6 flex flex-col flex-1 justify-between bg-white border-t-2 border-black">
                 <div>
-                  <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest font-bold">
+                  <span className="text-[10px] sm:text-[11px] font-mono text-zinc-500 uppercase tracking-widest font-bold line-clamp-1">
                     {product.brand}
                   </span>
                   <Link to={`/product/${product.slug}`}>
-                    <h3 className="font-serif text-lg font-bold text-black uppercase hover:text-amber-600 transition-colors mt-1">
+                    <h3 className="font-serif text-sm sm:text-base lg:text-lg font-bold text-black uppercase hover:text-amber-600 transition-colors mt-1 leading-snug line-clamp-2">
                       {product.name}
                     </h3>
                   </Link>
-                  <p className="text-zinc-600 text-xs font-light mt-2 line-clamp-2">{product.short_description}</p>
+                  <p className="hidden sm:block text-zinc-600 text-xs font-light mt-2 line-clamp-2">{product.short_description}</p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-zinc-200 flex items-center justify-between">
-                  <div>
+                <div className="mt-2 sm:mt-6 pt-2 sm:pt-4 border-t border-zinc-200 flex items-center justify-between gap-2">
+                  <div className="min-w-0">
                     {product.discount_price ? (
-                      <div className="flex items-center gap-2">
-                        <span className="text-black font-mono font-bold text-lg">${product.discount_price.toLocaleString()}</span>
-                        <span className="text-zinc-400 line-through text-xs font-mono">${product.base_price.toLocaleString()}</span>
+                      <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+                        <span className="text-black font-mono font-bold text-sm sm:text-lg">${product.discount_price.toLocaleString()}</span>
+                        <span className="text-zinc-400 line-through text-[10px] sm:text-xs font-mono hidden min-[420px]:inline">${product.base_price.toLocaleString()}</span>
                       </div>
                     ) : (
-                      <span className="text-black font-mono font-bold text-lg">${product.base_price.toLocaleString()}</span>
+                      <span className="text-black font-mono font-bold text-sm sm:text-lg">${product.base_price.toLocaleString()}</span>
                     )}
                   </div>
                   <Button
                     onClick={() => handleAddToCart(product)}
                     variant="outline"
                     size="sm"
-                    className="text-[11px] font-mono uppercase tracking-wider font-bold border-2 border-black hover:bg-black hover:text-white"
+                    className="hidden sm:inline-flex text-[11px] font-mono uppercase tracking-wider font-bold border-2 border-black hover:bg-black hover:text-white px-3 py-1.5"
                   >
                     + Add Bag
                   </Button>

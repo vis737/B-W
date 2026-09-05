@@ -15,7 +15,6 @@ const SearchPage = lazy(() => import('../pages/SearchPage'));
 const WishlistPage = lazy(() => import('../pages/WishlistPage'));
 const CheckoutPage = lazy(() => import('../pages/CheckoutPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
-const MembershipPage = lazy(() => import('../pages/MembershipPage'));
 const BrandStoryPage = lazy(() => import('../pages/BrandStoryPage'));
 const FAQPage = lazy(() => import('../pages/FAQPage'));
 const BlogPage = lazy(() => import('../pages/BlogPage'));
@@ -70,7 +69,6 @@ export const router = createBrowserRouter([
       { path: 'wishlist', element: <Suspense fallback={<PageLoader />}><WishlistPage /></Suspense> },
       { path: 'checkout', element: <Suspense fallback={<PageLoader />}><CheckoutPage /></Suspense> },
       { path: 'dashboard', element: <Suspense fallback={<PageLoader />}><DashboardPage /></Suspense> },
-      { path: 'membership', element: <Suspense fallback={<PageLoader />}><MembershipPage /></Suspense> },
       { path: 'brand-story', element: <Suspense fallback={<PageLoader />}><BrandStoryPage /></Suspense> },
       { path: 'faq', element: <Suspense fallback={<PageLoader />}><FAQPage /></Suspense> },
       { path: 'blog', element: <Suspense fallback={<PageLoader />}><BlogPage /></Suspense> },

@@ -15,6 +15,7 @@ export default defineConfig({
   server: {
     port: 3000,
     strictPort: true,
+    allowedHosts: true,
   },
   optimizeDeps: {
     include: ['react', 'react-dom']

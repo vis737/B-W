@@ -40,7 +40,7 @@ export const StickyAddToCart: React.FC<StickyAddToCartProps> = ({
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          className="fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 border-t border-amber-500/20 backdrop-blur-lg px-6 py-4 shadow-2xl"
+          className="fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 border-t border-amber-500/20 backdrop-blur-lg px-4 sm:px-6 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,0px))] shadow-2xl"
         >
           <div className="container mx-auto flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 min-w-0">

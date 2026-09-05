@@ -32,6 +32,19 @@ export const ShopPage: React.FC = () => {
   const [compareProducts, setCompareProducts] = useState<Product[]>([]);
   const [isCompareOpen, setIsCompareOpen] = useState<boolean>(false);
 
+  // Mobile filters sheet state
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+
+  // Lock background scroll while the mobile filter sheet is open
+  React.useEffect(() => {
+    if (!isMobileFilterOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isMobileFilterOpen]);
+
   const { addItem } = useCart();
   const { addToWishlist, isInWishlist } = useWishlist();
   const { showToast } = useToast();
@@ -157,6 +170,67 @@ export const ShopPage: React.FC = () => {
   const availableSizes = [...CLOTHING_SIZES, ...FOOTWEAR_SIZES.slice(0, 4)];
   const availableFits = Array.from(FIT_TYPES);
 
+  const activeFilterCount =
+    [
+      selectedCategorySlug,
+      selectedAgeSlug,
+      selectedBadge,
+      selectedFit,
+      searchQuery,
+      selectedColors.length > 0 ? 'colors' : '',
+      selectedSizes.length > 0 ? 'sizes' : '',
+      selectedPrice < maxPrice ? 'price' : '',
+    ].filter(Boolean).length;
+
+  const filtersPanel = (
+    <FilterSidebar
+      categories={allCategories}
+      selectedCategory={
+        selectedCategorySlug
+          ? MOCK_CATEGORIES.find((c) => c.slug === selectedCategorySlug)?.name || ''
+          : ''
+      }
+      onSelectCategory={(catName) => {
+        const catObj = MOCK_CATEGORIES.find((c) => c.name === catName);
+        if (catObj) {
+          searchParams.set('category', catObj.slug);
+        } else {
+          searchParams.delete('category');
+        }
+        setSearchParams(searchParams);
+      }}
+      selectedAgeSlug={selectedAgeSlug}
+      onSelectAgeSlug={(ageSlug) => {
+        if (ageSlug) searchParams.set('age', ageSlug);
+        else searchParams.delete('age');
+        setSearchParams(searchParams);
+      }}
+      colors={availableColors}
+      selectedColors={selectedColors}
+      onToggleColor={(col) =>
+        setSelectedColors((prev) => (prev.includes(col) ? prev.filter((c) => c !== col) : [...prev, col]))
+      }
+      sizes={availableSizes}
+      selectedSizes={selectedSizes}
+      onToggleSize={(sz) =>
+        setSelectedSizes((prev) => (prev.includes(sz) ? prev.filter((s) => s !== sz) : [...prev, sz]))
+      }
+      fits={availableFits}
+      selectedFit={selectedFit}
+      onSelectFit={setSelectedFit}
+      maxPrice={maxPrice}
+      selectedPrice={selectedPrice}
+      onChangePrice={setSelectedPrice}
+      selectedBadge={selectedBadge}
+      onSelectBadge={(badge) => {
+        if (badge) searchParams.set('badge', badge);
+        else searchParams.delete('badge');
+        setSearchParams(searchParams);
+      }}
+      onClearAll={clearAllFilters}
+    />
+  );
+
   return (
     <div className="bg-white text-black min-h-screen pt-8 pb-24">
       {/* Product Compare Modal */}
@@ -185,58 +259,74 @@ export const ShopPage: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Sidebar Filters */}
-        <div className="lg:col-span-3">
-          <FilterSidebar
-            categories={allCategories}
-            selectedCategory={
-              selectedCategorySlug
-                ? MOCK_CATEGORIES.find((c) => c.slug === selectedCategorySlug)?.name || ''
-                : ''
-            }
-            onSelectCategory={(catName) => {
-              const catObj = MOCK_CATEGORIES.find((c) => c.name === catName);
-              if (catObj) {
-                searchParams.set('category', catObj.slug);
-              } else {
-                searchParams.delete('category');
-              }
-              setSearchParams(searchParams);
-            }}
-            selectedAgeSlug={selectedAgeSlug}
-            onSelectAgeSlug={(ageSlug) => {
-              if (ageSlug) searchParams.set('age', ageSlug);
-              else searchParams.delete('age');
-              setSearchParams(searchParams);
-            }}
-            colors={availableColors}
-            selectedColors={selectedColors}
-            onToggleColor={(col) =>
-              setSelectedColors((prev) => (prev.includes(col) ? prev.filter((c) => c !== col) : [...prev, col]))
-            }
-            sizes={availableSizes}
-            selectedSizes={selectedSizes}
-            onToggleSize={(sz) =>
-              setSelectedSizes((prev) => (prev.includes(sz) ? prev.filter((s) => s !== sz) : [...prev, sz]))
-            }
-            fits={availableFits}
-            selectedFit={selectedFit}
-            onSelectFit={setSelectedFit}
-            maxPrice={maxPrice}
-            selectedPrice={selectedPrice}
-            onChangePrice={setSelectedPrice}
-            selectedBadge={selectedBadge}
-            onSelectBadge={(badge) => {
-              if (badge) searchParams.set('badge', badge);
-              else searchParams.delete('badge');
-              setSearchParams(searchParams);
-            }}
-            onClearAll={clearAllFilters}
-          />
+        {/* Sidebar Filters (desktop) */}
+        <div className="hidden lg:block lg:col-span-3">
+          {filtersPanel}
         </div>
+
+        {/* Mobile Filters Sheet */}
+        {isMobileFilterOpen && (
+          <div className="fixed inset-0 z-50 lg:hidden">
+            <button
+              aria-label="Close filters"
+              onClick={() => setIsMobileFilterOpen(false)}
+              className="absolute inset-0 w-full h-full bg-black/60 backdrop-blur-sm"
+            />
+            <div className="absolute inset-y-0 right-0 w-full max-w-md bg-zinc-50 shadow-2xl flex flex-col safe-top">
+              <div className="flex items-center justify-between px-6 py-4 bg-black text-white">
+                <h2 className="font-serif font-black uppercase tracking-widest text-sm">
+                  ❖ Refine Gentlemen Catalog
+                </h2>
+                <button
+                  onClick={() => setIsMobileFilterOpen(false)}
+                  aria-label="Close filters"
+                  className="p-2 text-white hover:text-amber-400 transition-colors"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto p-4">{filtersPanel}</div>
+              <div className="px-4 pb-[calc(12px+env(safe-area-inset-bottom,0px))] pt-2 bg-white border-t-2 border-black">
+                <button
+                  onClick={() => setIsMobileFilterOpen(false)}
+                  className="w-full py-4 bg-black text-white font-mono text-xs font-bold uppercase tracking-[0.25em] hover:bg-amber-500 hover:text-black transition-colors"
+                >
+                  Show {filteredProducts.length} Items
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Main Products Listing */}
         <div className="lg:col-span-9 space-y-6">
+          {/* Mobile filter toolbar */}
+          <div className="lg:hidden flex items-center justify-between gap-3 bg-black text-white rounded-xl px-4 py-3 shadow-md">
+            <div className="flex items-center gap-2 min-w-0">
+              <svg className="w-5 h-5 flex-shrink-0 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 4h18l-7 8v6l-4 2v-8L3 4z"/>
+              </svg>
+              <span className="text-xs font-mono font-bold uppercase tracking-widest">
+                {filteredProducts.length} Menswear Items
+              </span>
+            </div>
+            <button
+              onClick={() => setIsMobileFilterOpen(true)}
+              className="relative flex items-center gap-1.5 px-3.5 py-2 bg-white text-black text-[11px] font-mono font-bold uppercase tracking-widest rounded-lg hover:bg-amber-400 transition-colors active:scale-95"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+              </svg>
+              Filters
+              {activeFilterCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 min-w-5 h-5 px-1 rounded-full bg-amber-500 text-black text-[10px] font-bold flex items-center justify-center">
+                  {activeFilterCount}
+                </span>
+              )}
+            </button>
+          </div>
           {/* Controls Bar */}
           <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-4 rounded-xl border-2 border-black gap-4 shadow-md">
             <div className="flex items-center gap-3">
@@ -295,9 +385,9 @@ export const ShopPage: React.FC = () => {
 
           {/* Products Grid */}
           {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <Skeleton key={i} variant="rect" className="h-96 w-full rounded-xl" />
+                <Skeleton key={i} variant="rect" className="aspect-[3/4] w-full rounded-xl" />
               ))}
             </div>
           ) : filteredProducts.length === 0 ? (
@@ -308,16 +398,16 @@ export const ShopPage: React.FC = () => {
               onAction={clearAllFilters}
             />
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredProducts.map((product) => {
                 const isCompared = compareProducts.some((p) => p.id === product.id);
                 return (
                   <div
                     key={product.id}
-                    className="group relative bg-white border-2 border-black rounded-2xl overflow-hidden flex flex-col justify-between hover-lift shadow-lg transition-all duration-300"
+                    className="group relative bg-white border-2 border-black rounded-xl sm:rounded-2xl overflow-hidden flex flex-col justify-between hover-lift shadow-lg transition-all duration-300"
                   >
                     {/* Badges */}
-                    <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
+                    <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 flex flex-col gap-1">
                       {product.is_limited_edition && (
                         <span className="px-2.5 py-1 bg-amber-500 text-black text-[9px] uppercase font-mono font-bold tracking-widest rounded shadow">
                           Limited
@@ -331,7 +421,7 @@ export const ShopPage: React.FC = () => {
                     </div>
 
                     {/* Utils Overlay */}
-                    <div className="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
+                    <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10 flex flex-col gap-1.5">
                       <button
                         onClick={() => addToWishlist(product)}
                         title="Wishlist"
@@ -360,59 +450,73 @@ export const ShopPage: React.FC = () => {
                     </div>
 
                     {/* Image with Zoom */}
-                    <Link to={`/product/${product.slug}`} className="relative block h-80 overflow-hidden bg-zinc-100 img-zoom-container">
-                      <img
-                        src={product.images[0]?.url}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </Link>
+                    <div className="relative">
+                      <Link to={`/product/${product.slug}`} className="block overflow-hidden bg-zinc-100 img-zoom-container aspect-[3/4]">
+                        <img
+                          src={product.images[0]?.url}
+                          alt={product.name}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover"
+                        />
+                      </Link>
+                      {/* Mobile quick-add (sibling of the link for valid markup) */}
+                      <button
+                        onClick={() => handleAddToCart(product)}
+                        aria-label={`Add ${product.name} to bag`}
+                        className="absolute bottom-3 right-3 z-10 flex sm:hidden items-center justify-center w-11 h-11 rounded-full bg-black/90 text-white border border-white/25 shadow-xl backdrop-blur-sm hover:bg-amber-500 hover:text-black active:scale-90 transition-all duration-200"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                        </svg>
+                      </button>
+                    </div>
 
                     {/* Product Info */}
-                    <div className="p-5 flex flex-col flex-1 justify-between bg-white border-t-2 border-black">
+                    <div className="p-3 sm:p-4 lg:p-5 flex flex-col flex-1 justify-between bg-white border-t-2 border-black">
                       <div>
-                        <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-mono text-amber-600 uppercase tracking-widest font-bold">
+                        <div className="flex items-center justify-between gap-1">
+                          <span className="text-[9px] sm:text-[10px] font-mono text-amber-600 uppercase tracking-widest font-bold line-clamp-1">
                             {product.brand}
                           </span>
                           {product.age_groups[0] && (
-                            <span className="text-[9px] font-mono bg-zinc-100 border border-zinc-300 text-black px-2 py-0.5 rounded font-bold">
+                            <span className="hidden sm:inline-block text-[9px] font-mono bg-zinc-100 border border-zinc-300 text-black px-2 py-0.5 rounded font-bold whitespace-nowrap">
                               {product.age_groups[0].name}
                             </span>
                           )}
                         </div>
 
                         <Link to={`/product/${product.slug}`}>
-                          <h3 className="font-serif text-base font-bold text-black uppercase hover:text-amber-600 transition-colors mt-1">
+                          <h3 className="font-serif text-sm sm:text-base font-bold text-black uppercase hover:text-amber-600 transition-colors mt-1 leading-snug line-clamp-2">
                             {product.name}
                           </h3>
                         </Link>
-                        <p className="text-zinc-600 text-xs font-light mt-1.5 line-clamp-2">
+                        <p className="hidden sm:block text-zinc-600 text-xs font-light mt-1.5 line-clamp-2">
                           {product.short_description}
                         </p>
                       </div>
 
                       {/* Pricing & Add to Cart */}
-                      <div className="mt-5 pt-3 border-t border-zinc-200 flex items-center justify-between">
-                        <div>
+                      <div className="mt-2 sm:mt-5 pt-2 sm:pt-3 border-t border-zinc-200 flex items-center justify-between gap-2">
+                        <div className="min-w-0">
                           {product.discount_price ? (
-                            <div className="flex items-center gap-2">
-                              <span className="text-black font-mono font-bold text-base">
+                            <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+                              <span className="text-black font-mono font-bold text-sm sm:text-base">
                                 ${product.discount_price.toLocaleString()}
                               </span>
-                              <span className="text-zinc-400 line-through text-xs font-mono">
+                              <span className="text-zinc-400 line-through text-[10px] sm:text-xs font-mono hidden min-[420px]:inline">
                                 ${product.base_price.toLocaleString()}
                               </span>
                             </div>
                           ) : (
-                            <span className="text-black font-mono font-bold text-base">
+                            <span className="text-black font-mono font-bold text-sm sm:text-base">
                               ${product.base_price.toLocaleString()}
                             </span>
                           )}
                         </div>
                         <button
                           onClick={() => handleAddToCart(product)}
-                          className="px-3.5 py-1.5 bg-black text-white text-[10px] font-mono uppercase font-bold tracking-wider hover:bg-amber-500 hover:text-black transition-colors rounded-lg shadow"
+                          className="hidden sm:inline-block px-3.5 py-1.5 bg-black text-white text-[10px] font-mono uppercase font-bold tracking-wider hover:bg-amber-500 hover:text-black transition-colors rounded-lg shadow active:scale-95"
                         >
                           + Add Bag
                         </button>

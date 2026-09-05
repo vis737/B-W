@@ -101,10 +101,12 @@ export const PDP: React.FC = () => {
       <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Left Side: Image Gallery */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="relative h-[550px] md:h-[650px] w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
+          <div className="relative h-[420px] min-[480px]:h-[520px] md:h-[650px] w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
             <img
               src={product.images[activeImageIndex]?.url || product.images[0].url}
               alt={product.name}
+              loading="eager"
+              decoding="async"
               className="w-full h-full object-cover"
             />
             {product.is_limited_edition && (
@@ -120,13 +122,14 @@ export const PDP: React.FC = () => {
               <button
                 key={img.id}
                 onClick={() => setActiveImageIndex(idx)}
-                className={`w-24 h-32 rounded-lg overflow-hidden border transition-all ${
+                aria-label={`View image ${idx + 1} of ${product.images.length}`}
+                className={`w-16 h-24 sm:w-24 sm:h-32 rounded-lg overflow-hidden border transition-all flex-shrink-0 ${
                   activeImageIndex === idx
                     ? 'border-amber-400 ring-2 ring-amber-400/20'
                     : 'border-zinc-800 opacity-60 hover:opacity-100'
                 }`}
               >
-                <img src={img.url} alt={img.alt_text} className="w-full h-full object-cover" />
+                <img src={img.url} alt={img.alt_text} loading="lazy" decoding="async" className="w-full h-full object-cover" />
               </button>
             ))}
           </div>
@@ -264,9 +267,10 @@ export const PDP: React.FC = () => {
               variant="primary"
               size="lg"
               onClick={handleAddToCart}
-              className="flex-1 uppercase font-bold text-xs tracking-widest py-4 bg-white text-black hover:bg-amber-400 transition-colors shadow-xl"
+              className="flex-1 uppercase font-bold text-xs tracking-widest px-5 sm:px-8 py-4 bg-white text-black hover:bg-amber-400 transition-colors shadow-xl"
             >
-              Add To Shopping Bag (${(product.discount_price || product.base_price).toLocaleString()})
+              Add To Shopping Bag
+              <span className="hidden sm:inline">&nbsp;(${(product.discount_price || product.base_price).toLocaleString()})</span>
             </Button>
 
             <button

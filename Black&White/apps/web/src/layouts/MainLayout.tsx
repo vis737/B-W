@@ -1,6 +1,6 @@
 // apps/web/src/layouts/MainLayout.tsx
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { CartDrawer } from '../components/cart/CartDrawer';
@@ -14,12 +14,14 @@ import { BackToTop } from '../components/ui/BackToTop';
 const MainLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-bw-white">
+      <ScrollRestoration />
       <SEO />
       <Header />
       <SecretAdminListener />
       <SecretAdminModal />
       <CustomerAuthModal />
-      <main className="flex-grow pt-[80px]"> {/* Height of the sticky header */}
+      {/* pt offset = sticky header height + iOS safe area */}
+      <main className="flex-grow pt-[calc(80px+env(safe-area-inset-top,0px))]">
         <Outlet />
       </main>
       <Footer />

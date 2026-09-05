@@ -47,7 +47,6 @@ const Footer: React.FC = () => {
             <h5 className="uppercase font-sans font-semibold tracking-[0.2em] text-amber-400/80 mb-6 text-xs">Client Care</h5>
             <ul className="space-y-3 font-sans font-light text-zinc-300 text-sm">
               <li><Link to="/dashboard" className="hover:text-amber-400 transition-colors">My Account</Link></li>
-              <li><Link to="/membership" className="hover:text-amber-400 transition-colors">Membership Perks</Link></li>
               <li><Link to="/brand-story" className="hover:text-amber-400 transition-colors">Our Heritage</Link></li>
               <li><Link to="/faq" className="hover:text-amber-400 transition-colors">FAQ & Support</Link></li>
               <li><Link to="/blog" className="hover:text-amber-400 transition-colors">The Journal</Link></li>

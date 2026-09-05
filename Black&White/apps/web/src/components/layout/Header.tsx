@@ -14,7 +14,6 @@ const mainNavLinks = [
   { name: 'Suits & Tuxedos', href: '/shop?category=suits' },
   { name: 'Shirts', href: '/shop?category=shirts' },
   { name: 'Outerwear', href: '/shop?category=coats' },
-  { name: 'Gentleman Subscription', href: '/membership' },
   { name: 'Journal', href: '/blog' },
 ];
 
@@ -37,6 +36,16 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock background scroll while the mobile menu is open
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isMobileMenuOpen]);
+
   const handleAccountClick = () => {
     if (isCustomerLoggedIn) {
       navigate('/dashboard');
@@ -52,17 +61,18 @@ const Header: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b-2 border-black py-3.5 shadow-xl text-black'
-            : 'bg-gradient-to-b from-black/90 via-black/50 to-transparent py-5 text-white'
+            ? 'bg-white/95 backdrop-blur-md border-b-2 border-black pb-3.5 pt-[calc(14px+env(safe-area-inset-top,0px))] shadow-xl text-black'
+            : 'bg-gradient-to-b from-black/90 via-black/50 to-transparent pb-5 pt-[calc(20px+env(safe-area-inset-top,0px))] text-white'
         }`}
       >
-        <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-2">
           {/* Mobile menu toggle */}
           <button
-            className={`md:hidden p-2 -ml-2 transition-colors ${isScrolled ? 'text-black' : 'text-white'}`}
+            aria-label="Open menu"
+            className={`md:hidden p-2 -ml-2 rounded-full transition-colors ${isScrolled ? 'text-black hover:bg-zinc-100' : 'text-white hover:text-amber-400'}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16m-7 6h7"/>
             </svg>
           </button>
@@ -70,7 +80,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="text-2xl md:text-3xl font-serif font-black tracking-widest uppercase flex items-center gap-2 group"
+            className="text-xl min-[420px]:text-2xl md:text-3xl font-serif font-black tracking-widest uppercase flex items-center gap-2 group"
           >
             <span className="text-amber-500 group-hover:rotate-12 transition-transform duration-300">❖</span>
             <span className={isScrolled ? 'text-black' : 'text-white'}>B&W.</span>
@@ -95,11 +105,11 @@ const Header: React.FC = () => {
           </nav>
 
           {/* Utils */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-0.5 min-[420px]:gap-1.5 md:gap-4">
             <button
               onClick={() => setIsAISearchOpen(true)}
               title="AI Search & Autocomplete"
-              className={`p-1.5 rounded-full transition-all duration-300 flex items-center gap-1.5 ${
+              className={`p-2 rounded-full transition-all duration-300 flex items-center gap-1.5 ${
                 isScrolled ? 'text-black hover:bg-zinc-100' : 'text-white hover:text-amber-400'
               }`}
             >
@@ -116,7 +126,7 @@ const Header: React.FC = () => {
             <Link
               to="/wishlist"
               title="Wishlist"
-              className={`relative p-1.5 rounded-full transition-colors ${
+              className={`relative p-2 rounded-full transition-colors ${
                 isScrolled ? 'text-black hover:bg-zinc-100' : 'text-white hover:text-amber-400'
               }`}
             >
@@ -133,7 +143,7 @@ const Header: React.FC = () => {
             <button
               onClick={() => setIsDrawerOpen(true)}
               title="Shopping Bag"
-              className={`relative p-1.5 rounded-full transition-colors ${
+              className={`relative p-2 rounded-full transition-colors ${
                 isScrolled ? 'text-black hover:bg-zinc-100' : 'text-white hover:text-amber-400'
               }`}
             >
@@ -150,7 +160,7 @@ const Header: React.FC = () => {
             <button
               onClick={handleAccountClick}
               title="Gentleman Account"
-              className={`p-1.5 rounded-full transition-colors ${
+              className={`p-2 rounded-full transition-colors ${
                 isScrolled ? 'text-black hover:bg-zinc-100' : 'text-white hover:text-amber-400'
               }`}
             >

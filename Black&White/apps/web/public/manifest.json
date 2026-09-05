@@ -1,21 +1,17 @@
 {
-  "name": "Black & White",
+  "name": "Black & White | Gentlemen's Haute Couture",
   "short_name": "B&W",
-  "description": "Luxury fashion brand",
+  "description": "Luxury menswear atelier — bespoke tailored suits, fine shirts, cashmere and couture outerwear.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#0a0a0a",
   "icons": [
     {
-      "src": "/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }
